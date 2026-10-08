@@ -1,0 +1,8 @@
+### Situation
+Mamaearth's growth and regional operations generated a total cleaned revenue of INR 97,358.30 across active orders. Baseline transaction tracking established steady volume, though underlying distribution channels varied significantly across payment modes and city tiers.
+
+### Complication
+Returns continue to drag down margins aggressively. Specifically, Cash on Delivery (COD) orders exhibit a severe return rate of 44.4%, with Tier-2 COD segments reaching up to 54.5% risk. Furthermore, duplicate transaction bugs caused a reconciliation discrepancy of INR 2,501.90 against raw logs, distorting initial performance views.
+
+### Resolution
+After purging data duplicates and isolating bulk order outliers, March emerged as the true peak revenue month at INR 20,318.90. Operations must immediately restrict high-risk COD exposure in Tier-2 regions to protect net margins.
