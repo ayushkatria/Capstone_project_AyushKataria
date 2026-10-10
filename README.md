@@ -1,36 +1,43 @@
 # Mamaearth Returns & Growth Intelligence Pipeline
 
-A fully reproducible end-to-end data analytics and GenAI intelligence pipeline investigating order returns, payment risk segments, and revenue trends for Mamaearth.
+## Project Overview
 
----
+A reproducible data analytics pipeline for analyzing Mamaearth's e-commerce performance, including order returns, payment methods, and monthly revenue trends. The project combines SQL, Python, data visualization, and AI-generated business insights.
 
-## Execution Guide
+## 1. Database Setup and SQL Reports
 
-Follow these steps in strict chronological order to reproduce every number from scratch:
+Use SQLite to initialize the database and execute the SQL scripts from the repository root in this order:
 
-### Step 1: SQL Relational Layer (`sql/`)
-1. Initialize your SQLite database and run `sql/schema.sql` to build the tables.
-2. Run `sql/seed_data.sql` to load raw CSV data into `customers`, `products`, and `orders`.
-   *(If using SQLite `.import`, run the blank string cleanup script for `discount_pct` and `rating` cells immediately after).*
-3. Execute `sql/reports.sql` to generate baseline metrics.
+1. Run `sql/schema.sql` to create the `customers`, `products`, and `orders` tables.
+2. Run `sql/seed_data.sql` to load the sample data. If importing CSV files using SQLite `.import`, clean blank strings in `discount_pct` and `rating` where required.
+3. Run `sql/reports.sql` to generate baseline business reports and metrics.
 
-### Step 2: Python Data Wrangling & EDA (`analysis/`)
-Run the independent Python data cleaning and exploratory pipeline:
+Ensure the database is populated correctly before running the analysis scripts.
+
+## 2. Data Cleaning, EDA, and Visualization
+
+Run the following commands from the repository root:
+
 ```bash
 python analysis/clean_and_eda.py
 python analysis/visualize.py
+```
 
-clean_and_eda.py cleans payment casing, removes duplicates, handles missing values, reconciles total revenue (₹97,358.30), and automatically completes Task 5 by writing verified metrics to narrator/findings.json.   
+The cleaning script processes missing values, duplicate records, and inconsistent payment-method casing. It reconciles revenue and performs exploratory data analysis. Task 5 of Part 2 writes the verified findings to `narrator/findings.json`. The visualization script generates `visualizations/return_rate_by_payment.png` and `visualizations/monthly_revenue_trend.png`.
 
-visualize.py saves output charts (return_rate_by_payment.png, monthly_revenue_trend.png) to visualizations/.   
+## 3. Generate the Business Narrative
 
-Step 3: GenAI Insight Narrator (narrator/)   
-Generate the executive business narrative based on verified figures:   
+**Online mode:** Set your Gemini API key as an environment variable and run the narrative generator.
 
-Online Mode (Gemini API): Set your API key and run the script:   
-
-Bash
+```bash
 export GEMINI_API_KEY="your_api_key"
 python narrator/generate_narrative.py
-Offline Path (Keyless Fallback): Run the script with no API key configured. It automatically utilizes the deterministic offline template (generate_scr_narrative_offline) with zero network access required.
+```
 
+On Windows PowerShell, use `$env:GEMINI_API_KEY="your_api_key"` instead.
+
+**Offline mode:** Unset the API key and run the same Python command. The script uses its deterministic offline narrative template, if implemented, without requiring Gemini API access.
+
+## Reproducibility
+
+Execute all steps sequentially using the same source data and database configuration. Confirm that `narrator/findings.json` is refreshed before generating the narrative. Verify reported metrics against the SQL reports and Python analysis outputs.
