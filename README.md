@@ -24,7 +24,7 @@ clean_and_eda.py cleans payment casing, removes duplicates, handles missing valu
 
 visualize.py saves output charts (return_rate_by_payment.png, monthly_revenue_trend.png) to visualizations/.
 
-Step 3: GenAI Insight Narrator (narrator/)
+### Step 3: GenAI Insight Narrator (narrator/)
 Generate the executive business narrative based on verified figures:
 
 Online Mode (Gemini API): Set your API key and run the script:
@@ -32,4 +32,5 @@ Online Mode (Gemini API): Set your API key and run the script:
 Bash
 export GEMINI_API_KEY="your_api_key"
 python narrator/generate_narrative.py
+
 Offline Path (Keyless Fallback): Run the script with no API key configured. It automatically utilizes the deterministic offline template (generate_scr_narrative_offline) with zero network access required.
